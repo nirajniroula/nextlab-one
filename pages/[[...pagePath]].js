@@ -40,7 +40,7 @@ export async function getStaticPaths() {
   const pages = await client.get({
     predicates: [
       prismic.Predicates.at("document.type", "page"),
-      prismic.Predicates.at("document.tags", ["bankind"]),
+      prismic.Predicates.at("document.tags", ["cc-next"]),
     ],
   });
   console.log(">>>....", pages);
