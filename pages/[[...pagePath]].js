@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { SliceZone } from "@prismicio/react";
 import * as prismicH from "@prismicio/helpers";
-
+import * as prismic from "@prismicio/client";
 import { createClient, linkResolver } from "../prismicio";
 import { components } from "../slices";
 
@@ -36,10 +36,17 @@ export async function getStaticProps({ params, previewData }) {
 export async function getStaticPaths() {
   const client = createClient();
 
-  const pages = await client.getAllByType("page");
+  // const pages = await client.getAllByType("page");
+  const pages = await client.get({
+    predicates: [
+      prismic.Predicates.at("document.type", "page"),
+      prismic.Predicates.at("document.tags", ["bankind"]),
+    ],
+  });
+  console.log(">>>....", pages);
 
   return {
-    paths: pages.map((page) => prismicH.asLink(page, linkResolver)),
+    paths: pages?.results.map((page) => prismicH.asLink(page, linkResolver)),
     fallback: false,
   };
 }

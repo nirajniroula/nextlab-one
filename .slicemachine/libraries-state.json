@@ -684,6 +684,62 @@
           "extension": "js"
         },
         "screenshotPaths": {}
+      },
+      "test_slice_copy": {
+        "library": "slices",
+        "id": "test_slice_copy",
+        "name": "TestSliceCopy",
+        "description": "TestSliceCopy",
+        "model": {
+          "id": "test_slice_copy",
+          "type": "SharedSlice",
+          "name": "TestSliceCopy",
+          "description": "TestSliceCopy",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "TestSliceCopy",
+              "primary": {
+                "username": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Username",
+                    "placeholder": ""
+                  }
+                },
+                "password": {
+                  "type": "Text",
+                  "config": {
+                    "label": "Password",
+                    "placeholder": "Password"
+                  }
+                }
+              },
+              "items": {},
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "name": "Default",
+            "slice_type": "test_slice_copy",
+            "items": [],
+            "primary": {
+              "username": "orchestrate virtual architectures",
+              "password": "transform cross-platform platforms"
+            }
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {}
       }
     }
   }
