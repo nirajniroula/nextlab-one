@@ -26,7 +26,7 @@ const desiredBuild = "not-x";
 const triggerBuild = () => {
   // Replace the deploy hook URL with your actual deploy hook URL
   const deployHookUrl =
-    "https://api.vercel.com/v1/integrations/deploy/prj_qdZTrbbo3MIhhxbyTIdcDXITsFKR/5NZNj5uLUM";
+    "http://api.vercel.com/v1/integrations/deploy/prj_qdZTrbbo3MIhhxbyTIdcDXITsFKR/5NZNj5uLUM";
 
   // Make an HTTP POST request to the deploy hook URL
   axios
@@ -51,6 +51,8 @@ export default function handler(req, res) {
       // Check if the desired tag name is present in the webhook payload
       if (secret === desiredBuild) {
         // Trigger the build process
+        console.log(">>>>>>>>>>>>>>", "triggering");
+
         triggerBuild();
       }
 
