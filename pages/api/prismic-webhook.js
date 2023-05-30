@@ -1,5 +1,4 @@
 import bodyParser from "body-parser";
-import { exec } from "child_process";
 
 // Configure bodyParser to parse webhook payload
 const jsonParser = bodyParser.json();
