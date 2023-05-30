@@ -32,7 +32,7 @@ const triggerBuild = () => {
   console.log(">>>>axios call...");
 
   axios
-    .post(deployHookUrl)
+    .post("https://google.com")
     .then((response) => {
       console.log("Deploy hook called successfully");
       console.log("Response:", response.data);
