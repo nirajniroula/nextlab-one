@@ -1,5 +1,5 @@
+import axios from "axios";
 import bodyParser from "body-parser";
-import fetch from "node-fetch";
 
 // Configure bodyParser to parse webhook payload
 const jsonParser = bodyParser.json();
@@ -31,7 +31,8 @@ const triggerBuild = () => {
   // Make an HTTP POST request to the deploy hook URL
   console.log(">>>>axios call...");
 
-  fetch(deployHookUrl, { method: "POST" })
+  axios
+    .post(deployHookUrl)
     .then((response) => {
       console.log("Deploy hook called successfully");
       console.log("Response:", response.data);
@@ -48,13 +49,13 @@ export default function handler(req, res) {
     console.log(">>>>req.body type", typeof req.body);
 
     jsonParser(req, res, () => {
-      //   var resObj = eval("(" + req.body + ")");
+    //   var resObj = eval("(" + req.body + ")");
       console.log(">>>>secret", req.body.secret);
 
       const { secret } = req.body;
 
       // Check if the desired tag name is present in the webhook payload
-      if (secret == desiredBuild) {
+      if (secret === desiredBuild) {
         // Trigger the build process
         console.log(">>>>triggering...");
 
