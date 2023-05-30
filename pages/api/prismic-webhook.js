@@ -40,7 +40,7 @@ const triggerBuild = () => {
 };
 
 export default function handler(req, res) {
-    console.log(">>>>>>>>>>>>>>", req.method);
+    console.log(">>>>>>>>>>>>>>", req.body);
 
   if (req.method === "POST") {
     // Parse the Prismic webhook payload
