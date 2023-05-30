@@ -41,17 +41,15 @@ const triggerBuild = () => {
 };
 
 export default function handler(req, res) {
-    console.log(">>>>>>>>>>>>>>", req.body);
 
   if (req.method === "POST") {
     // Parse the Prismic webhook payload
     jsonParser(req, res, () => {
-      const { secret } = req.body;
+      const { secret } = JSON.parse(req.body);
 
       // Check if the desired tag name is present in the webhook payload
-      if (secret === desiredBuild) {
+      if (secret == desiredBuild) {
         // Trigger the build process
-        console.log(">>>>>>>>>>>>>>", "triggering");
 
         triggerBuild();
       }
