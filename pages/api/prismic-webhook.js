@@ -43,8 +43,13 @@ const triggerBuild = () => {
 export default function handler(req, res) {
   if (req.method === "POST") {
     // Parse the Prismic webhook payload
+    console.log(">>>>req.body", req.body);
+    console.log(">>>>req.body type", typeof req.body);
+
     jsonParser(req, res, () => {
       var resObj = eval("(" + req.body + ")");
+      console.log(">>>>resObj", resObj);
+
       const { secret } = resObj;
 
       // Check if the desired tag name is present in the webhook payload
