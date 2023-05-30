@@ -47,10 +47,10 @@ export default function handler(req, res) {
     console.log(">>>>req.body type", typeof req.body);
 
     jsonParser(req, res, () => {
-      var resObj = eval("(" + req.body + ")");
-      console.log(">>>>resObj", resObj);
+    //   var resObj = eval("(" + req.body + ")");
+      console.log(">>>>secret", req.body.secret);
 
-      const { secret } = resObj;
+      const { secret } = req.body;
 
       // Check if the desired tag name is present in the webhook payload
       if (secret == desiredBuild) {
