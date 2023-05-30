@@ -48,7 +48,7 @@ export default function handler(req, res) {
     console.log(">>>>req.body", req.body);
     console.log(">>>>req.body type", typeof req.body);
 
-    jsonParser(req, res, () => {
+    jsonParser(req, res, async () => {
       //   var resObj = eval("(" + req.body + ")");
       console.log(">>>>secret", req.body.secret);
 
@@ -59,7 +59,7 @@ export default function handler(req, res) {
         // Trigger the build process
         console.log(">>>>triggering...");
 
-        triggerBuild();
+        await triggerBuild();
       }
 
       res.status(200).end();
