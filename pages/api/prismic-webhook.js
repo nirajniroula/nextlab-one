@@ -23,7 +23,7 @@ const desiredBuild = "not-x";
 // };
 
 // Define your build logic here
-const triggerBuild = () => {
+const triggerBuild = async () => {
   // Replace the deploy hook URL with your actual deploy hook URL
   const deployHookUrl =
     "https://api.vercel.com/v1/integrations/deploy/prj_qdZTrbbo3MIhhxbyTIdcDXITsFKR/5NZNj5uLUM?buildCache=false";
@@ -31,8 +31,8 @@ const triggerBuild = () => {
   // Make an HTTP POST request to the deploy hook URL
   console.log(">>>>axios call...");
 
-  axios
-    .post("https://google.com")
+  await axios
+    .post(deployHookUrl)
     .then((response) => {
       console.log("Deploy hook called successfully");
       console.log("Response:", response.data);
@@ -49,7 +49,7 @@ export default function handler(req, res) {
     console.log(">>>>req.body type", typeof req.body);
 
     jsonParser(req, res, () => {
-    //   var resObj = eval("(" + req.body + ")");
+      //   var resObj = eval("(" + req.body + ")");
       console.log(">>>>secret", req.body.secret);
 
       const { secret } = req.body;
