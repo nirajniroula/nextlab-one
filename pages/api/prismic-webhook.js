@@ -26,7 +26,7 @@ const desiredBuild = "not-x";
 const triggerBuild = () => {
   // Replace the deploy hook URL with your actual deploy hook URL
   const deployHookUrl =
-    "https://api.vercel.com/v1/integrations/deploy/prj_qdZTrbbo3MIhhxbyTIdcDXITsFKR/5NZNj5uLUM";
+    "https://api.vercel.com/v1/integrations/deploy/prj_qdZTrbbo3MIhhxbyTIdcDXITsFKR/5NZNj5uLUM?buildCache=false";
 
   // Make an HTTP POST request to the deploy hook URL
   console.log(">>>>axios call...");
