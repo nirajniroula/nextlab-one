@@ -29,6 +29,8 @@ const triggerBuild = () => {
     "https://api.vercel.com/v1/integrations/deploy/prj_qdZTrbbo3MIhhxbyTIdcDXITsFKR/5NZNj5uLUM";
 
   // Make an HTTP POST request to the deploy hook URL
+  console.log(">>>>axios call...");
+
   axios
     .post(deployHookUrl)
     .then((response) => {
@@ -55,6 +57,8 @@ export default function handler(req, res) {
       // Check if the desired tag name is present in the webhook payload
       if (secret == desiredBuild) {
         // Trigger the build process
+        console.log(">>>>triggering...");
+
         triggerBuild();
       }
 
