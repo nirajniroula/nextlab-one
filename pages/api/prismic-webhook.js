@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 const jsonParser = bodyParser.json();
 
 // Define your desired tag name
-const desiredTagName = "build";
+const desiredBuild = "not-x";
 
 // // Define your build logic here
 // const triggerBuild = () => {
@@ -45,10 +45,10 @@ export default function handler(req, res) {
   if (req.method === "POST") {
     // Parse the Prismic webhook payload
     jsonParser(req, res, () => {
-      const { tags } = req.body;
+      const { secret } = req.body;
 
       // Check if the desired tag name is present in the webhook payload
-      if (Array.isArray(tags) && tags.includes(desiredTagName)) {
+      if (secret === desiredBuild) {
         // Trigger the build process
         triggerBuild();
       }
