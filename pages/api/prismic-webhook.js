@@ -1,4 +1,4 @@
-import { Client } from "@prismicio/client";
+import * as prismic from "@prismicio/client";
 import axios from "axios";
 import bodyParser from "body-parser";
 
@@ -46,9 +46,9 @@ const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN;
 // Function to fetch document IDs based on tags
 const fetchDocumentIdsByTags = async (tags) => {
   try {
-    const client = Client(prismicEndpoint, { accessToken });
+    const client = prismic.createClient(prismicEndpoint, { accessToken });
 
-    const response = await client.query([], {
+    const response = await client.get([], {
       pageSize: 100,
       fetch: [],
       predicates: ["document.tags", tags],
