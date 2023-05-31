@@ -46,7 +46,7 @@ const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN;
 // Function to fetch document IDs based on tags
 const fetchDocumentIdsByTags = async (tags) => {
   try {
-    const client = prismic.createClient(prismicEndpoint, { accessToken });
+    const client = prismic.createClient(prismicApiEndpoint, { prismicAccessToken });
 
     const response = await client.get([], {
       pageSize: 100,
