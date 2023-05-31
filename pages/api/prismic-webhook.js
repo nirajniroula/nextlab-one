@@ -1,3 +1,4 @@
+import { Client } from "@prismicio/client";
 import axios from "axios";
 import bodyParser from "body-parser";
 
@@ -45,14 +46,13 @@ const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN;
 // Function to fetch document IDs based on tags
 const fetchDocumentIdsByTags = async (tags) => {
   try {
-    const api = await Prismic.getApi(prismicApiEndpoint, {
-      accessToken: prismicAccessToken,
-    });
+    const client = Client(prismicEndpoint, { accessToken });
 
-    const response = await api.query(
-      Prismic.Predicates.at("document.tags", tags),
-      { pageSize: 100, fetch: [] }
-    );
+    const response = await client.query([], {
+      pageSize: 100,
+      fetch: [],
+      predicates: ["document.tags", tags],
+    });
 
     const documentIds = response.results.map((document) => document.id);
 
@@ -85,11 +85,11 @@ export default function handler(req, res) {
 
         // Trigger the build process
 
-        console.log(">>>>triggering...");
         if (Array.isArray(desiredDocumentsIds) && Array.isArray(documents)) {
           for (const documentId of desiredDocumentIds) {
             if (documents.includes(documentId)) {
               // Trigger the build process
+              console.log(">>>>triggering...");
               await triggerBuildSiteOne();
               break; // If one desired document is found, no need to continue checking the rest
             }
