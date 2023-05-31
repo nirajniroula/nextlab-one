@@ -46,14 +46,16 @@ const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN;
 // Function to fetch document IDs based on tags
 const fetchDocumentIdsByTags = async (tags) => {
   try {
-    const client = prismic.createClient(prismicApiEndpoint, { prismicAccessToken });
+    const client = prismic.createClient(prismicApiEndpoint, {
+      prismicAccessToken,
+    });
 
     const response = await client.get([], {
       pageSize: 100,
       fetch: [],
       predicates: ["document.tags", tags],
     });
-
+    console.log(">>>>", response);
     const documentIds = response.results.map((document) => document.id);
 
     return documentIds;
@@ -77,7 +79,7 @@ export default function handler(req, res) {
       // Check if the secret is present in the webhook payload
       if (secret === "secret123") {
         // Fetch the document IDs based on tags
-        const desiredDocumentsIds = await fetchDocumentIdsByTags(tags).catch(
+        const desiredDocumentIds = await fetchDocumentIdsByTags(tags).catch(
           (error) => {
             console.error("Failed to fetch document IDs:", error);
           }
@@ -85,7 +87,7 @@ export default function handler(req, res) {
 
         // Trigger the build process
 
-        if (Array.isArray(desiredDocumentsIds) && Array.isArray(documents)) {
+        if (Array.isArray(desiredDocumentIds) && Array.isArray(documents)) {
           for (const documentId of desiredDocumentIds) {
             if (documents.includes(documentId)) {
               // Trigger the build process
