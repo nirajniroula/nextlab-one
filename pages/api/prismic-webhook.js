@@ -73,7 +73,7 @@ export default function handler(req, res) {
       //   var resObj = eval("(" + req.body + ")");
 
       const { documents, secret } = req.body;
-
+      const tags = ["cc-next"];
       // Check if the secret is present in the webhook payload
       if (secret === "secret123") {
         // Fetch the document IDs based on tags
