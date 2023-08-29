@@ -70,6 +70,7 @@ async function docHasTag(documentId, tagToCheck) {
       prismicAccessToken,
     });
     const document = await client.getByID(documentId);
+    console.log(">>>Document>>>", document);
     if (document && document.tags.includes(tagToCheck)) {
       return true;
     } else {
