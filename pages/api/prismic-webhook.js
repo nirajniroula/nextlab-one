@@ -32,7 +32,7 @@ const triggerBuildSiteOne = async () => {
 const triggerBuildSiteTwo = async () => {
   // Replace the deploy hook URL with your actual deploy hook URL
   const deployHookUrl =
-    "https://api.vercel.com/v1/integrations/deploy/prj_LVh6gyfTqVH51mMu5q4HQ1Yj9rSA/fTKzCNlDlw";
+    "https://api.vercel.com/v1/integrations/deploy/prj_LVh6gyfTqVH51mMu5q4HQ1Yj9rSA/fTKzCNlDlw?buildCache=false";
 
   // Make an HTTP POST request to the deploy hook URL
   console.log(">>>>Deploy site 2...");
