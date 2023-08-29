@@ -22,9 +22,8 @@ const callDeployHookUrl = async (url) => {
 const triggerBuildSiteOne = async () => {
   // Replace the deploy hook URL with your actual deploy hook URL
   const deployHookUrl =
-    "https://api.vercel.com/v1/integrations/deploy/prj_qdZTrbbo3MIhhxbyTIdcDXITsFKR/5NZNj5uLUM?buildCache=false";
+    "https://api.vercel.com/v1/integrations/deploy/prj_qdZTrbbo3MIhhxbyTIdcDXITsFKR/5NZNj5uLUM";
   console.log(">>>>Deploy site 1...");
-
   callDeployHookUrl(deployHookUrl);
 };
 
@@ -32,7 +31,7 @@ const triggerBuildSiteOne = async () => {
 const triggerBuildSiteTwo = async () => {
   // Replace the deploy hook URL with your actual deploy hook URL
   const deployHookUrl =
-    "https://api.vercel.com/v1/integrations/deploy/prj_LVh6gyfTqVH51mMu5q4HQ1Yj9rSA/fTKzCNlDlw?buildCache=false";
+    "https://api.vercel.com/v1/integrations/deploy/prj_LVh6gyfTqVH51mMu5q4HQ1Yj9rSA/fTKzCNlDlw";
 
   // Make an HTTP POST request to the deploy hook URL
   console.log(">>>>Deploy site 2...");
@@ -108,7 +107,7 @@ export default function handler(req, res) {
               siteTwoBuildTriggered = true;
             }
             if (siteTwoBuildTriggered && siteOneBuildTriggered) {
-              break; // If one desired document is found, no need to continue checking the rest
+              break; // If both tags is found, no need to continue checking the rest
             }
           }
         }
