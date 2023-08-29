@@ -80,6 +80,8 @@ export default function handler(req, res) {
           }
         );
         let siteOneBuildTriggered = false;
+        console.log(">>>>docIds...", desiredDocumentIds);
+
         if (!desiredDocumentIds || desiredDocumentIds.length === 0) {
           await triggerBuildSiteOne();
           siteOneBuildTriggered = true;
@@ -94,7 +96,6 @@ export default function handler(req, res) {
           for (const documentId of desiredDocumentIds) {
             if (documents.includes(documentId)) {
               // Trigger the build process
-              console.log(">>>>triggering...");
               await triggerBuildSiteTwo();
               break; // If one desired document is found, no need to continue checking the rest
             }
