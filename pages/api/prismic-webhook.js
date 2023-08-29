@@ -68,14 +68,9 @@ const fetchDocumentIdsByTags = async (tags) => {
 export default function handler(req, res) {
   if (req.method === "POST") {
     // Parse the Prismic webhook payload
-    console.log(">>>>req.body", req.body);
-    console.log(">>>>req.body type", typeof req.body);
-
     jsonParser(req, res, async () => {
-      //   var resObj = eval("(" + req.body + ")");
-
       const { documents, secret } = req.body;
-      const tags = ["cc-next"];
+      const tags = ["STB"];
       // Check if the secret is present in the webhook payload
       if (secret === "secret123") {
         // Fetch the document IDs based on tags
@@ -86,15 +81,20 @@ export default function handler(req, res) {
         );
 
         // Trigger the build process
-
         if (Array.isArray(desiredDocumentIds) && Array.isArray(documents)) {
+          let siteOneBuildTriggered = false;
+
           for (const documentId of desiredDocumentIds) {
             if (documents.includes(documentId)) {
               // Trigger the build process
               console.log(">>>>triggering...");
               await triggerBuildSiteOne();
+              siteOneBuildTriggered = true;
               break; // If one desired document is found, no need to continue checking the rest
             }
+          }
+          if (!siteOneBuildTriggered) {
+            await triggerBuildSiteTwo();
           }
         }
         res.status(200).end();
