@@ -88,7 +88,7 @@ export default function handler(req, res) {
       const { documents, secret } = req.body;
       const tag = "cc-next";
       const xTag = "cc-next-x";
-
+      console.log("Documents:", documents);
       // Check if the secret is present in the webhook payload
       if (secret === "secret123") {
         // Trigger the build process
