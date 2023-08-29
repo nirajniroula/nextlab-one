@@ -70,7 +70,7 @@ export default function handler(req, res) {
     // Parse the Prismic webhook payload
     jsonParser(req, res, async () => {
       const { documents, secret } = req.body;
-      const tags = ["STB"];
+      const tags = ["cc-next"];
       // Check if the secret is present in the webhook payload
       if (secret === "secret123") {
         // Fetch the document IDs based on tags
