@@ -71,6 +71,8 @@ export default function handler(req, res) {
     jsonParser(req, res, async () => {
       const { documents, secret } = req.body;
       const tags = ["cc-next-x"];
+      const notXtags = ["cc-next"];
+
       // Check if the secret is present in the webhook payload
       if (secret === "secret123") {
         // Fetch the document IDs based on tags
@@ -79,8 +81,15 @@ export default function handler(req, res) {
             console.error("Failed to fetch document IDs:", error);
           }
         );
+        const desiredNotXDocumentIds = await fetchDocumentIdsByTags(notXtags).catch(
+          (error) => {
+            console.error("Failed to fetch document IDs:", error);
+          }
+        );
         let siteOneBuildTriggered = false;
         console.log(">>>>docIds...", desiredDocumentIds);
+        console.log(">>>>notXdocIds...", desiredNotXDocumentIds);
+
 
         if (!desiredDocumentIds || desiredDocumentIds.length === 0) {
           await triggerBuildSiteOne();
