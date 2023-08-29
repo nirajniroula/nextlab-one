@@ -70,7 +70,7 @@ export default function handler(req, res) {
     // Parse the Prismic webhook payload
     jsonParser(req, res, async () => {
       const { documents, secret } = req.body;
-      const tags = ["cc-next"];
+      const tags = ["cc-next-x"];
       // Check if the secret is present in the webhook payload
       if (secret === "secret123") {
         // Fetch the document IDs based on tags
@@ -79,22 +79,25 @@ export default function handler(req, res) {
             console.error("Failed to fetch document IDs:", error);
           }
         );
+        let siteOneBuildTriggered = false;
+        if (!desiredDocumentIds || desiredDocumentIds.length === 0) {
+          await triggerBuildSiteOne();
+          siteOneBuildTriggered = true;
+        }
 
         // Trigger the build process
-        if (Array.isArray(desiredDocumentIds) && Array.isArray(documents)) {
-          let siteOneBuildTriggered = false;
-
+        if (
+          !siteOneBuildTriggered &&
+          Array.isArray(desiredDocumentIds) &&
+          Array.isArray(documents)
+        ) {
           for (const documentId of desiredDocumentIds) {
             if (documents.includes(documentId)) {
               // Trigger the build process
               console.log(">>>>triggering...");
-              await triggerBuildSiteOne();
-              siteOneBuildTriggered = true;
+              await triggerBuildSiteTwo();
               break; // If one desired document is found, no need to continue checking the rest
             }
-          }
-          if (!siteOneBuildTriggered) {
-            await triggerBuildSiteTwo();
           }
         }
         res.status(200).end();
