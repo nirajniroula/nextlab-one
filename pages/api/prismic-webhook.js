@@ -98,8 +98,8 @@ export default function handler(req, res) {
 
           for (const documentId of documents) {
             const hasTag = await docHasTag(documentId, tag);
-            const hasXTag = await docHasTag(documentId, xTag, hasXTag);
-            console.log("????tags", hasTag);
+            const hasXTag = await docHasTag(documentId, xTag);
+            console.log("????tags", hasTag, hasXTag);
 
             if (!siteOneBuildTriggered && hasTag) {
               // Trigger the build process
