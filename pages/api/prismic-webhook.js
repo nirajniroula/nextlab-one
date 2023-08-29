@@ -44,68 +44,70 @@ const prismicApiEndpoint = process.env.PRISMIC_API;
 const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN;
 
 // Function to fetch document IDs based on tags
-const fetchDocumentIdsByTags = async (tags) => {
+// const fetchDocumentIdsByTags = async (tags) => {
+//   try {
+//     const client = prismic.createClient(prismicApiEndpoint, {
+//       prismicAccessToken,
+//     });
+
+//     const response = await client.get([], {
+//       pageSize: 100,
+//       fetch: [],
+//       predicates: ["document.tags", tags],
+//     });
+//     console.log(">>>>", response);
+//     const documentIds = response.results.map((document) => document.id);
+
+//     return documentIds;
+//   } catch (error) {
+//     console.error("Failed to fetch document IDs:", error);
+//     return [];
+//   }
+// };
+
+async function docHasTag(documentId, tagToCheck) {
   try {
     const client = prismic.createClient(prismicApiEndpoint, {
       prismicAccessToken,
     });
-
-    const response = await client.get([], {
-      pageSize: 100,
-      fetch: [],
-      predicates: ["document.tags", tags],
-    });
-    console.log(">>>>", response);
-    const documentIds = response.results.map((document) => document.id);
-
-    return documentIds;
+    const document = await client.getByID(documentId);
+    if (document && document.tags.includes(tagToCheck)) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (error) {
-    console.error("Failed to fetch document IDs:", error);
-    return [];
+    console.error("Error:", error);
   }
-};
+}
 
 export default function handler(req, res) {
   if (req.method === "POST") {
     // Parse the Prismic webhook payload
     jsonParser(req, res, async () => {
       const { documents, secret } = req.body;
-      const tags = ["cc-next-x"];
-      const notXtags = ["cc-next"];
+      const tag = ["cc-next"];
+      const xTag = ["cc-next-x"];
 
       // Check if the secret is present in the webhook payload
       if (secret === "secret123") {
-        // Fetch the document IDs based on tags
-        const desiredDocumentIds = await fetchDocumentIdsByTags(tags).catch(
-          (error) => {
-            console.error("Failed to fetch document IDs:", error);
-          }
-        );
-        const desiredNotXDocumentIds = await fetchDocumentIdsByTags(notXtags).catch(
-          (error) => {
-            console.error("Failed to fetch document IDs:", error);
-          }
-        );
-        let siteOneBuildTriggered = false;
-        console.log(">>>>docIds...", desiredDocumentIds);
-        console.log(">>>>notXdocIds...", desiredNotXDocumentIds);
-
-
-        if (!desiredDocumentIds || desiredDocumentIds.length === 0) {
-          await triggerBuildSiteOne();
-          siteOneBuildTriggered = true;
-        }
-
         // Trigger the build process
-        if (
-          !siteOneBuildTriggered &&
-          Array.isArray(desiredDocumentIds) &&
-          Array.isArray(documents)
-        ) {
-          for (const documentId of desiredDocumentIds) {
-            if (documents.includes(documentId)) {
+        if (Array.isArray(documents)) {
+          let siteOneBuildTriggered = false;
+          let siteTwoBuildTriggered = false;
+
+          for (const documentId of documents) {
+            if (!siteOneBuildTriggered && docHasTag(documentId, tag)) {
+              // Trigger the build process
+              await triggerBuildSiteOne();
+              siteOneBuildTriggered = true;
+            }
+            if (!siteTwoBuildTriggered && docHasTag(documentId, xTag)) {
               // Trigger the build process
               await triggerBuildSiteTwo();
+              siteTwoBuildTriggered;
+            }
+            if (siteTwoBuildTriggered && siteOneBuildTriggered) {
               break; // If one desired document is found, no need to continue checking the rest
             }
           }
