@@ -97,12 +97,15 @@ export default function handler(req, res) {
           let siteTwoBuildTriggered = false;
 
           for (const documentId of documents) {
-            if (!siteOneBuildTriggered && docHasTag(documentId, tag)) {
+            const hasTag = await docHasTag(documentId, tag);
+            const hasXTag = await docHasTag(documentId, xTag);
+
+            if (!siteOneBuildTriggered && hasTag) {
               // Trigger the build process
               await triggerBuildSiteOne();
               siteOneBuildTriggered = true;
             }
-            if (!siteTwoBuildTriggered && docHasTag(documentId, xTag)) {
+            if (!siteTwoBuildTriggered && hasXTag) {
               // Trigger the build process
               await triggerBuildSiteTwo();
               siteTwoBuildTriggered = true;
