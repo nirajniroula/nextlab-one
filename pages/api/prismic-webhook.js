@@ -77,7 +77,7 @@ async function docHasTag(documentId, tagToCheck) {
       return false;
     }
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Doc has Tag: Error:", error);
   }
 }
 
@@ -86,8 +86,8 @@ export default function handler(req, res) {
     // Parse the Prismic webhook payload
     jsonParser(req, res, async () => {
       const { documents, secret } = req.body;
-      const tag = ["cc-next"];
-      const xTag = ["cc-next-x"];
+      const tag = "cc-next";
+      const xTag = "cc-next-x";
 
       // Check if the secret is present in the webhook payload
       if (secret === "secret123") {
@@ -105,7 +105,7 @@ export default function handler(req, res) {
             if (!siteTwoBuildTriggered && docHasTag(documentId, xTag)) {
               // Trigger the build process
               await triggerBuildSiteTwo();
-              siteTwoBuildTriggered;
+              siteTwoBuildTriggered = true;
             }
             if (siteTwoBuildTriggered && siteOneBuildTriggered) {
               break; // If one desired document is found, no need to continue checking the rest
