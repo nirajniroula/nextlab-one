@@ -93,27 +93,25 @@ export default function handler(req, res) {
           let siteOneBuildTriggered = false;
           let siteTwoBuildTriggered = false;
 
-          await triggerBuildSiteOne();
+          for (const documentId of documents) {
+            const hasTag = await docHasTag(documentId, tag);
+            const hasXTag = await docHasTag(documentId, xTag);
+            console.log("????tags", hasTag, hasXTag);
 
-          // for (const documentId of documents) {
-          //   const hasTag = await docHasTag(documentId, tag);
-          //   const hasXTag = await docHasTag(documentId, xTag);
-          //   console.log("????tags", hasTag, hasXTag);
-
-          //   if (!siteOneBuildTriggered && hasTag) {
-          //     // Trigger the build process
-          //     await triggerBuildSiteOne();
-          //     siteOneBuildTriggered = true;
-          //   }
-          //   if (!siteTwoBuildTriggered && hasXTag) {
-          //     // Trigger the build process
-          //     await triggerBuildSiteTwo();
-          //     siteTwoBuildTriggered = true;
-          //   }
-          //   if (siteTwoBuildTriggered && siteOneBuildTriggered) {
-          //     break; // If both tags is found, no need to continue checking the rest
-          //   }
-          // }
+            if (!siteOneBuildTriggered && hasTag) {
+              // Trigger the build process
+              await triggerBuildSiteOne();
+              siteOneBuildTriggered = true;
+            }
+            if (!siteTwoBuildTriggered && hasXTag) {
+              // Trigger the build process
+              await triggerBuildSiteTwo();
+              siteTwoBuildTriggered = true;
+            }
+            if (siteTwoBuildTriggered && siteOneBuildTriggered) {
+              break; // If both tags is found, no need to continue checking the rest
+            }
+          }
         }
         res.status(200).end();
       } else {
