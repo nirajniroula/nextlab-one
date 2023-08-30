@@ -24,7 +24,7 @@ const triggerBuildSiteOne = async () => {
   const deployHookUrl =
     "https://api.vercel.com/v1/integrations/deploy/prj_qdZTrbbo3MIhhxbyTIdcDXITsFKR/5NZNj5uLUM";
   console.log(">>>>Deploy site 1...");
-  callDeployHookUrl(deployHookUrl);
+  await callDeployHookUrl(deployHookUrl);
 };
 
 // Define your build logic here
@@ -35,7 +35,7 @@ const triggerBuildSiteTwo = async () => {
 
   // Make an HTTP POST request to the deploy hook URL
   console.log(">>>>Deploy site 2...");
-  callDeployHookUrl(deployHookUrl);
+  await callDeployHookUrl(deployHookUrl);
 };
 
 // Prismic API configuration
