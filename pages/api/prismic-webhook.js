@@ -5,11 +5,11 @@ import bodyParser from "body-parser";
 // Configure bodyParser to parse webhook payload
 const jsonParser = bodyParser.json();
 
-const callDeployHookUrl = async (url) => {
+const callDeployHookUrl = (url) => {
   console.log(">>>>Deploy starting...");
 
-  await axios
-    .post(url)
+  axios
+    .get(url)
     .then((response) => {
       console.log("Deploy hook called successfully");
       console.log("Response:", response.data);
