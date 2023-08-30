@@ -6,10 +6,10 @@ import bodyParser from "body-parser";
 const jsonParser = bodyParser.json();
 
 const callDeployHookUrl = async (url) => {
-  console.log(">>>>Deploy starting...");
+  console.log("Info", "Deploy starting...");
   try {
     const response = await axios.get(url);
-    console.log("Deploy hook called successfully");
+    console.log("Info", "Deploy hook called successfully");
     console.log("Response:", response.data);
   } catch (error) {
     console.error("Failed to call deploy hook:", error);
@@ -20,7 +20,7 @@ const triggerBuildSiteOne = async () => {
   // Replace the deploy hook URL with your actual deploy hook URL
   const deployHookUrl =
     "https://api.vercel.com/v1/integrations/deploy/prj_qdZTrbbo3MIhhxbyTIdcDXITsFKR/5NZNj5uLUM";
-  console.log(">>>>Deploy site 1...");
+  console.log("Info", "Deploy site 1...");
   await callDeployHookUrl(deployHookUrl);
 };
 
@@ -31,7 +31,7 @@ const triggerBuildSiteTwo = async () => {
     "https://api.vercel.com/v1/integrations/deploy/prj_LVh6gyfTqVH51mMu5q4HQ1Yj9rSA/fTKzCNlDlw";
 
   // Make an HTTP POST request to the deploy hook URL
-  console.log(">>>>Deploy site 2...");
+  console.log("Info", "Deploy site 2...");
   await callDeployHookUrl(deployHookUrl);
 };
 
@@ -96,8 +96,6 @@ export default function handler(req, res) {
           for (const documentId of documents) {
             const hasTag = await docHasTag(documentId, tag);
             const hasXTag = await docHasTag(documentId, xTag);
-            console.log("????tags", hasTag, hasXTag);
-
             if (!siteOneBuildTriggered && hasTag) {
               // Trigger the build process
               await triggerBuildSiteOne();
