@@ -126,16 +126,18 @@ export const Header = ({ globalSettings, navigation }) => {
                   )}
                   
                   {item.sub_menus?.length > 0 && (
-                    <div className="absolute top-full left-0 mt-2 w-48 bg-white border shadow-lg rounded-md hidden group-hover:block z-50">
-                      <ul className="py-2">
-                        {item.sub_menus.map((sub, i) => (
-                           <li key={i}>
-                             <PrismicLink field={sub.sub_link} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-700">
-                               {sub.sub_label}
-                             </PrismicLink>
-                           </li>
-                        ))}
-                      </ul>
+                    <div className="absolute top-full left-0 pt-2 w-48 hidden group-hover:block z-50">
+                      <div className="bg-white border shadow-lg rounded-md">
+                        <ul className="py-2">
+                          {item.sub_menus.map((sub, i) => (
+                             <li key={i}>
+                               <PrismicLink field={sub.sub_link} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-700">
+                                 {sub.sub_label}
+                               </PrismicLink>
+                             </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   )}
                 </div>
