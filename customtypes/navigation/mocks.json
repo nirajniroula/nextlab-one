@@ -1,0 +1,74 @@
+[
+  {
+    "uid": {
+      "__TYPE__": "UIDContent",
+      "value": "becoming"
+    },
+    "segment_id": {
+      "__TYPE__": "FieldContent",
+      "value": "order",
+      "type": "Text"
+    },
+    "menu_items": {
+      "__TYPE__": "GroupContentType",
+      "value": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "value": [
+            [
+              "label",
+              {
+                "__TYPE__": "FieldContent",
+                "value": "card",
+                "type": "Text"
+              }
+            ],
+            [
+              "link",
+              {
+                "__TYPE__": "LinkContent",
+                "key": "78d9a50d-1ab5-4e2c-9a7c-395dbdf83691",
+                "value": {
+                  "__TYPE__": "ExternalLink",
+                  "url": "http://google.com"
+                }
+              }
+            ],
+            [
+              "sub_menus",
+              {
+                "__TYPE__": "GroupContentType",
+                "value": [
+                  {
+                    "__TYPE__": "GroupItemContent",
+                    "value": [
+                      [
+                        "sub_label",
+                        {
+                          "__TYPE__": "FieldContent",
+                          "value": "tobacco",
+                          "type": "Text"
+                        }
+                      ],
+                      [
+                        "sub_link",
+                        {
+                          "__TYPE__": "LinkContent",
+                          "key": "888cfeb3-4383-4370-9801-8979c823d9e7",
+                          "value": {
+                            "__TYPE__": "ExternalLink",
+                            "url": "http://twitter.com"
+                          }
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "hide_keywords": {
+      "__TYPE__": "GroupContentType",
+      "value": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "value": [
+            [
+              "keyword",
+              {
+                "__TYPE__": "FieldContent",
+                "value": "clock",
+                "type": "Text"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "hide_prefix_paths": {
+      "__TYPE__": "GroupContentType",
+      "value": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "value": [
+            [
+              "path",
+              {
+                "__TYPE__": "FieldContent",
+                "value": "growth",
+                "type": "Text"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "hide_full_paths": {
+      "__TYPE__": "GroupContentType",
+      "value": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "value": [
+            [
+              "path",
+              {
+                "__TYPE__": "FieldContent",
+                "value": "spring",
+                "type": "Text"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "segments": {
+      "__TYPE__": "GroupContentType",
+      "value": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "value": [
+            [
+              "segment_id",
+              {
+                "__TYPE__": "FieldContent",
+                "value": "mill",
+                "type": "Text"
+              }
+            ],
+            [
+              "segment_label",
+              {
+                "__TYPE__": "FieldContent",
+                "value": "ants",
+                "type": "Text"
+              }
+            ],
+            [
+              "url_prefix",
+              {
+                "__TYPE__": "FieldContent",
+                "value": "share",
+                "type": "Text"
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  }
+]

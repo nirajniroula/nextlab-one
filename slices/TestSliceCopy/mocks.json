@@ -1,0 +1,24 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "username": {
+        "__TYPE__": "FieldContent",
+        "value": "carbon",
+        "type": "Text"
+      },
+      "password": {
+        "__TYPE__": "FieldContent",
+        "value": "himself",
+        "type": "Text"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

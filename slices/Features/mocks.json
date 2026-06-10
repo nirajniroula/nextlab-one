@@ -1,0 +1,100 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "tagline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Et esse in sit incididunt duis eiusmod pariatur enim aliqua id."
+            }
+          }
+        ]
+      },
+      "text": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Qui consectetur exercitation cillum quis nulla id et officia."
+            }
+          }
+        ]
+      },
+      "alignment": {
+        "__TYPE__": "FieldContent",
+        "value": "Left",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "image",
+            {
+              "__TYPE__": "ImageContent",
+              "origin": {
+                "id": "main",
+                "url": "https://images.unsplash.com/photo-1494173853739-c21f58b16055",
+                "width": 3277,
+                "height": 4092
+              },
+              "url": "https://images.unsplash.com/photo-1494173853739-c21f58b16055",
+              "width": 3277,
+              "height": 4092,
+              "edit": {
+                "zoom": 1,
+                "crop": {
+                  "x": 0,
+                  "y": 0
+                },
+                "background": "transparent"
+              },
+              "alt": "difference",
+              "thumbnails": {}
+            }
+          ],
+          [
+            "description",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Irure incididunt fugiat anim magna ullamco amet ut irure veniam mollit cupidatat. Consectetur adipisicing quis ea proident labore do."
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "buttonLink",
+            {
+              "__TYPE__": "LinkContent",
+              "key": "d767e98f-b485-422f-9cd6-536c15cd2247",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "https://slicemachine.dev"
+              }
+            }
+          ],
+          [
+            "buttonText",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "ago",
+              "type": "Text"
+            }
+          ]
+        ]
+      }
+    ]
+  }
+]

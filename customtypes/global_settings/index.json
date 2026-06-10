@@ -1,0 +1,84 @@
+{
+  "id": "global_settings",
+  "label": "Global Settings",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "hide_keywords": {
+        "type": "Group",
+        "config": {
+          "label": "Hide Keywords",
+          "fields": {
+            "keyword": {
+              "type": "Text",
+              "config": {
+                "label": "Keyword",
+                "placeholder": "e.g. accountant"
+              }
+            }
+          }
+        }
+      },
+      "hide_prefix_paths": {
+        "type": "Group",
+        "config": {
+          "label": "Hide Prefix Paths",
+          "fields": {
+            "path": {
+              "type": "Text",
+              "config": {
+                "label": "Prefix Path",
+                "placeholder": "e.g. /blog/"
+              }
+            }
+          }
+        }
+      },
+      "hide_full_paths": {
+        "type": "Group",
+        "config": {
+          "label": "Hide Full Paths",
+          "fields": {
+            "path": {
+              "type": "Text",
+              "config": {
+                "label": "Full Path",
+                "placeholder": "e.g. /about"
+              }
+            }
+          }
+        }
+      },
+      "segments": {
+        "type": "Group",
+        "config": {
+          "label": "Segments",
+          "fields": {
+            "segment_id": {
+              "type": "Text",
+              "config": {
+                "label": "Segment ID",
+                "placeholder": "e.g. business"
+              }
+            },
+            "segment_label": {
+              "type": "Text",
+              "config": {
+                "label": "Segment Label",
+                "placeholder": "e.g. For businesses"
+              }
+            },
+            "url_prefix": {
+              "type": "Text",
+              "config": {
+                "label": "URL Prefix",
+                "placeholder": "e.g. / or /account/"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
