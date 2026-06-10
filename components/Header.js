@@ -96,7 +96,7 @@ export const Header = ({ globalSettings, navigation }) => {
         {/* Dynamic Navigation */}
         <nav className="flex items-center gap-6">
           {!activeNav && (
-            <span className="text-xs text-red-500">No Nav doc found for segment ID: "{activeSegment}"</span>
+            <span className="text-xs text-red-500">No Nav doc found for segment ID: &quot;{activeSegment}&quot;</span>
           )}
           {activeNav &&
             activeNav.data.menu_items?.map((item, index) => {
