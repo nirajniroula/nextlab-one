@@ -35,29 +35,10 @@ export const Header = ({ globalSettings, navigation }) => {
     );
   }
 
-  // 2. Pre-calculate the hrefs for each toggle to use Next.js <Link> (fixes speed issue by prefetching)
-  let basePath = currentPath;
-  const activeSegmentData = segments?.find(s => s.segment_id === activeSegment);
-  const activePrefix = activeSegmentData?.url_prefix;
-  
-  if (activePrefix && activePrefix !== "/") {
-    const normalizedPath = currentPath.endsWith("/") ? currentPath.slice(0, -1) : currentPath;
-    const normalizedPrefix = activePrefix.endsWith("/") ? activePrefix.slice(0, -1) : activePrefix;
-    
-    if (normalizedPath === normalizedPrefix) {
-      basePath = "/";
-    } else if (normalizedPath.startsWith(normalizedPrefix + "/")) {
-      basePath = normalizedPath.substring(normalizedPrefix.length); // e.g. /account/pricing -> /pricing
-    }
-  }
-
+  // 2. The segment toggle should redirect to the base page of that segment
   const getHrefForSegment = (prefix) => {
-    let newPath = basePath;
-    if (prefix && prefix !== "/") {
-      const normalizedPrefix = prefix.endsWith("/") ? prefix.slice(0, -1) : prefix;
-      newPath = basePath === "/" ? normalizedPrefix : normalizedPrefix + basePath;
-    }
-    return newPath || "/";
+    if (!prefix || prefix === "/") return "/";
+    return prefix.endsWith("/") ? prefix.slice(0, -1) : prefix;
   };
 
   // 3. Get Active Navigation

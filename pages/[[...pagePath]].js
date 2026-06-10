@@ -26,15 +26,18 @@ export async function getStaticProps({ params, previewData }) {
   const client = createClient({ previewData });
 
   let uid = "home";
-  if (params.path && params.path.length > 0) {
-    if (params.path[0] === "account") {
-      if (params.path.length === 1) {
+  // The Next.js catch-all parameter is named 'pagePath' because of the filename [[...pagePath]].js
+  const pathArray = params.pagePath || [];
+
+  if (pathArray.length > 0) {
+    if (pathArray[0] === "account") {
+      if (pathArray.length === 1) {
         uid = "account";
       } else {
-        uid = `account-${params.path[params.path.length - 1]}`;
+        uid = `account-${pathArray[pathArray.length - 1]}`;
       }
     } else {
-      uid = params.path[params.path.length - 1];
+      uid = pathArray[pathArray.length - 1];
     }
   }
 
